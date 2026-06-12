@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1962 Viper Formula Vee — Rad Mfg Co, Portland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black:   #1A1A18;
+    --aluminum:#C8C4BC;
+    --red:     #B83A2A;
+    --cream:   #F0EBE0;
+    --gray:    #4A4845;
+    --mid:     #2E2D2B;
+    --yellow:  #D4A017;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 36px;
+    background: var(--black);
+    border-bottom: 1px solid var(--gray);
+  }
+  .nav-mark { font-family:'Teko',sans-serif; font-size:19px; letter-spacing:.12em; color:var(--red); text-transform:uppercase; }
+  .nav-links { display:flex; gap:24px; list-style:none; }
+  .nav-links a { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--aluminum); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover { color:var(--cream); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height:100vh;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items:center;
+    padding:100px 64px 64px;
+    gap:56px;
+    border-bottom:1px solid var(--gray);
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute; inset:0;
+    background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.018) 39px,rgba(255,255,255,.018) 40px);
+    pointer-events:none;
+  }
+  .hero-text { position:relative; }
+  .hero-eyebrow { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--red); margin-bottom:16px; }
+  .hero-title {
+    font-family:'Teko',sans-serif;
+    font-size:clamp(68px,9vw,120px);
+    font-weight:700; line-height:.88;
+    text-transform:uppercase; letter-spacing:-.01em;
+    color:var(--cream); margin-bottom:28px;
+  }
+  .hero-title span { color:var(--red); display:block; }
+  .hero-sub {
+    font-size:12px; color:var(--aluminum); line-height:1.8; max-width:360px;
+    border-left:2px solid var(--red); padding-left:16px; margin-bottom:28px;
+  }
+  .hero-badges { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
+  .badge {
+    font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    border:1px solid var(--gray); padding:5px 12px; color:var(--aluminum);
+  }
+
+  /* race plate */
+  .hero-plate { position:relative; display:flex; align-items:center; justify-content:center; }
+  .race-plate {
+    width:min(360px,100%); aspect-ratio:4/3;
+    border:3px solid var(--aluminum);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    position:relative;
+    background:var(--mid);
+    outline:8px solid var(--black);
+    box-shadow:inset 0 0 50px rgba(0,0,0,.7), 0 0 0 1px var(--gray);
+  }
+  .race-plate::before {
+    content:'RAD MFG CO · 2240 SE 31ST · PORTLAND, OR';
+    position:absolute; top:12px;
+    font-size:8.5px; letter-spacing:.18em; color:var(--aluminum); opacity:.55;
+    text-align:center;
+  }
+  .race-plate::after {
+    content:'FORMULA VEE · SCCA · OREGON INT\'L RACEWAY';
+    position:absolute; bottom:12px;
+    font-size:8.5px; letter-spacing:.15em; color:var(--aluminum); opacity:.55;
+  }
+  .plate-number {
+    font-family:'Teko',sans-serif; font-size:155px; font-weight:700; line-height:1;
+    color:var(--cream); text-shadow:4px 4px 0 rgba(0,0,0,.6);
+  }
+  .plate-team {
+    font-size:10px; letter-spacing:.22em; color:var(--red); margin-top:-6px;
+    text-transform:uppercase;
+  }
+  .corner-bolt { position:absolute; width:9px; height:9px; border-radius:50%; background:var(--aluminum); opacity:.45; }
+  .corner-bolt.tl{top:10px;left:10px} .corner-bolt.tr{top:10px;right:10px}
+  .corner-bolt.bl{bottom:10px;left:10px} .corner-bolt.br{bottom:10px;right:10px}
+
+  /* ── SECTION FRAME ── */
+  section { padding:80px 64px; border-bottom:1px solid var(--gray); }
+  .section-header { display:flex; align-items:baseline; gap:20px; margin-bottom:48px; }
+  .section-tag { font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:var(--red); white-space:nowrap; }
+  .section-title { font-family:'Teko',sans-serif; font-size:46px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; color:var(--cream); line-height:1; }
+  .section-rule { flex:1; height:1px; background:var(--gray); }
+
+  /* ── HERO PHOTO ── */
+  .hero-photo-strip {
+    width:100%; height:56vh; min-height:320px;
+    position:relative; overflow:hidden;
+    border-bottom:1px solid var(--gray);
+  }
+  .hero-photo-strip img {
+    width:100%; height:100%; object-fit:cover;
+    object-position:center 40%;
+    filter:contrast(1.06) saturate(.82);
+  }
+  .hero-photo-strip .strip-label {
+    position:absolute; bottom:20px; right:28px;
+    font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--cream); opacity:.7;
+    background:rgba(0,0,0,.5); padding:4px 10px;
+  }
+
+  /* ── SPECS ── */
+  .specs-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    gap:1px; background:var(--gray); border:1px solid var(--gray);
+  }
+  .spec-cell { background:var(--black); padding:18px 22px; }
+  .spec-label { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--aluminum); margin-bottom:5px; }
+  .spec-value { font-family:'Teko',sans-serif; font-size:26px; font-weight:500; color:var(--cream); line-height:1.1; }
+  .spec-note { font-size:11px; color:var(--gray); margin-top:3px; font-style:italic; }
+  .spec-cell.highlight { background:var(--mid); }
+  .spec-cell.highlight .spec-value { color:var(--red); }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid {
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:3px;
+  }
+  .pg { background:var(--mid); position:relative; overflow:hidden; cursor:pointer; }
+  .pg img { width:100%; height:100%; object-fit:cover; display:block; filter:contrast(1.04) saturate(.88); transition:filter .3s, transform .4s; }
+  .pg:hover img { filter:contrast(1.1) saturate(1); transform:scale(1.025); }
+  .pg-cap {
+    position:absolute; bottom:0; left:0; right:0;
+    padding:7px 12px;
+    background:linear-gradient(transparent,rgba(0,0,0,.78));
+    font-size:10px; letter-spacing:.1em; color:var(--aluminum); text-transform:uppercase;
+    opacity:0; transition:opacity .25s;
+  }
+  .pg:hover .pg-cap { opacity:1; }
+
+  /* slot sizing */
+  .pg-a { grid-column:span 8; aspect-ratio:16/9; }
+  .pg-b { grid-column:span 4; aspect-ratio:4/3; }
+  .pg-c { grid-column:span 4; aspect-ratio:1; }
+  .pg-d { grid-column:span 4; aspect-ratio:1; }
+  .pg-e { grid-column:span 4; aspect-ratio:1; }
+  .pg-f { grid-column:span 6; aspect-ratio:3/2; }
+  .pg-g { grid-column:span 6; aspect-ratio:3/2; }
+  .pg-h { grid-column:span 12; aspect-ratio:21/6; min-height:200px; }
+
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    display:none; position:fixed; inset:0; z-index:500;
+    background:rgba(0,0,0,.92);
+    align-items:center; justify-content:center;
+    cursor:zoom-out;
+  }
+  #lightbox.active { display:flex; }
+  #lightbox img { max-width:90vw; max-height:90vh; object-fit:contain; box-shadow:0 0 60px rgba(0,0,0,.8); }
+  #lightbox-close { position:absolute; top:20px; right:28px; font-size:28px; color:var(--aluminum); cursor:pointer; line-height:1; }
+
+  /* ── TIMELINE ── */
+  .timeline { display:flex; flex-direction:column; }
+  .tl-entry { display:grid; grid-template-columns:110px 1px 1fr; gap:0 28px; padding-bottom:40px; }
+  .tl-entry:last-child { padding-bottom:0; }
+  .tl-year { font-family:'Teko',sans-serif; font-size:34px; font-weight:600; color:var(--red); text-align:right; padding-top:2px; }
+  .tl-line { background:var(--gray); position:relative; }
+  .tl-line::before { content:''; position:absolute; top:8px; left:50%; transform:translateX(-50%); width:9px; height:9px; background:var(--red); border-radius:50%; }
+  .tl-body { padding-top:4px; }
+  .tl-head { font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--cream); margin-bottom:7px; }
+  .tl-text { font-size:12px; color:var(--aluminum); line-height:1.8; }
+
+  /* ── BROCHURE ── */
+  .brochure-section { background:var(--mid); }
+  .brochure-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; }
+  .brochure-grid img { width:100%; aspect-ratio:4/3; object-fit:cover; cursor:pointer; filter:sepia(.15) contrast(1.05); transition:filter .3s; }
+  .brochure-grid img:hover { filter:sepia(0) contrast(1.1); }
+  .brochure-note {
+    margin-top:28px; border-left:2px solid var(--red); padding-left:16px;
+    font-size:12px; color:var(--aluminum); line-height:1.8; max-width:680px;
+    font-style:italic;
+  }
+
+  /* ── PROVENANCE ── */
+  .prov-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  .prose { font-size:13px; color:var(--aluminum); line-height:1.85; }
+  .prose p+p { margin-top:16px; }
+  .prose strong { color:var(--cream); font-weight:500; }
+  .data-block { border:1px solid var(--gray); padding:24px; background:var(--mid); }
+  .data-block-title { font-family:'Teko',sans-serif; font-size:20px; text-transform:uppercase; letter-spacing:.1em; color:var(--cream); margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--gray); }
+  .data-row { display:flex; justify-content:space-between; align-items:baseline; padding:8px 0; border-bottom:1px dotted var(--gray); font-size:11px; gap:16px; }
+  .data-row:last-child { border-bottom:none; }
+  .data-key { color:var(--aluminum); letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; }
+  .data-val { color:var(--cream); text-align:right; }
+
+  /* ── PERIOD PHOTOS ── */
+  .period-header { display:flex; align-items:center; gap:20px; margin:40px 0 16px; }
+  .period-grid { display:grid; grid-template-columns:1fr; gap:3px; }
+  .period-slot {
+    position:relative; overflow:hidden; cursor:pointer;
+    background:var(--mid);
+    max-height:560px;
+  }
+  .period-slot img {
+    width:100%; height:100%; object-fit:cover; object-position:center top;
+    display:block;
+    filter:grayscale(1) contrast(1.08) brightness(.96);
+    transition:filter .35s, transform .4s;
+  }
+  .period-slot:hover img { filter:grayscale(.7) contrast(1.12) brightness(1); transform:scale(1.015); }
+  .period-caption {
+    position:absolute; bottom:0; left:0; right:0;
+    padding:20px 24px;
+    background:linear-gradient(transparent, rgba(0,0,0,.82));
+  }
+  .period-caption-title {
+    font-family:'Teko',sans-serif; font-size:22px; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--cream); margin-bottom:4px;
+  }
+  .period-caption-sub { font-size:11px; color:var(--aluminum); letter-spacing:.1em; text-transform:uppercase; }
+
+  /* ── PRESS ── */
+  .press-intro { margin-bottom:36px; }
+  .press-kicker { display:flex; gap:20px; align-items:baseline; margin-bottom:10px; }
+  .press-pub { font-family:'Teko',sans-serif; font-size:22px; color:var(--cream); text-transform:uppercase; letter-spacing:.08em; }
+  .press-date { font-size:11px; color:var(--red); letter-spacing:.18em; text-transform:uppercase; }
+  .press-headline { font-family:'Teko',sans-serif; font-size:32px; font-weight:500; color:var(--cream); line-height:1.1; max-width:760px; margin-bottom:10px; }
+  .press-byline { font-size:11px; color:var(--gray); letter-spacing:.12em; text-transform:uppercase; }
+  .press-spread { display:grid; grid-template-columns:220px 1fr 1fr; grid-template-rows:auto; gap:3px; margin-bottom:40px; }
+  .press-img { position:relative; overflow:hidden; cursor:pointer; background:var(--mid); }
+  .press-img img { width:100%; height:100%; object-fit:cover; display:block; filter:contrast(1.04) saturate(.5); transition:filter .3s, transform .35s; }
+  .press-img:hover img { filter:contrast(1.1) saturate(.75); transform:scale(1.02); }
+  .press-img-cover { aspect-ratio:3/4; }
+  .press-img-wide { aspect-ratio:4/3; }
+  .press-context { display:grid; grid-template-columns:1fr 2fr; gap:40px; align-items:start; }
+  .press-pull {
+    font-family:'Teko',sans-serif; font-size:26px; font-weight:400; line-height:1.25;
+    color:var(--aluminum); border-left:2px solid var(--red); padding-left:18px;
+    font-style:italic;
+  }
+
+  /* ── REVEAL ── */
+  .reveal { opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+
+  /* ── FOOTER ── */
+  footer { padding:44px 64px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .footer-mark { font-family:'Teko',sans-serif; font-size:26px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+  .footer-mark span { color:var(--red); }
+  .footer-meta { font-size:11px; color:var(--gray); letter-spacing:.12em; text-align:right; line-height:1.9; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:900px){
+    .hero { grid-template-columns:1fr; padding:100px 24px 48px; gap:36px; }
+    .hero-plate { order:-1; }
+    section { padding:56px 24px; }
+    .pg-a,.pg-b,.pg-c,.pg-d,.pg-e,.pg-f,.pg-g,.pg-h { grid-column:span 12; aspect-ratio:16/9; }
+    .press-spread { grid-template-columns:1fr; }
+    .press-context { grid-template-columns:1fr; }
+    .press-img-cover,.press-img-wide { aspect-ratio:4/3; }
+    
+    .brochure-grid { grid-template-columns:repeat(2,1fr); }
+    footer { padding:32px 24px; flex-direction:column; align-items:flex-start; }
+    .footer-meta { text-align:left; }
+  }
+  @media(prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none;} .pg img{transition:none;} }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-mark">Viper #356 · 1962</div>
+  <ul class="nav-links">
+    <li><a href="#specs">Specs</a></li>
+    <li><a href="#photos">Photos</a></li>
+    <li><a href="#history">History</a></li>
+    <li><a href="#brochure">Archive</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#provenance">About</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Rad Mfg Co · 2240 SE 31st St · Portland, Oregon · 235-1669</div>
+    <h1 class="hero-title">
+      Viper
+      <span>Formula</span>
+      Vee
+    </h1>
+    <p class="hero-sub">
+      A 1962 SCCA Formula Vee built by Rad Mfg Co of Portland, Oregon. Race number 356, raced by the Riviera Team Portland at Oregon International Raceway. One of the earliest purpose-built FV chassis from the Pacific Northwest — documented and preserved.
+    </p>
+    <div class="hero-badges">
+      <div class="badge">Race No. 356</div>
+      <div class="badge">SCCA · Formula Vee</div>
+      <div class="badge">Oregon Int'l Raceway</div>
+      <div class="badge">Built in Portland</div>
+    </div>
+  </div>
+  <div class="hero-plate">
+    <div class="race-plate">
+      <div class="corner-bolt tl"></div><div class="corner-bolt tr"></div>
+      <div class="corner-bolt bl"></div><div class="corner-bolt br"></div>
+      <div class="plate-number">356</div>
+      <div class="plate-team">Riviera Team Portland</div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO PHOTO STRIP -->
+<div class="hero-photo-strip">
+  <img src="photo_hero_side.jpg" alt="1962 Viper FV — side profile, golden hour">
+  <div class="strip-label">Portland, Oregon · 2024</div>
+</div>
+
+<!-- SPECS -->
+<section id="specs">
+  <div class="section-header reveal">
+    <span class="section-tag">From the Original Brochure</span>
+    <h2 class="section-title">Technical Specifications</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="specs-grid reveal">
+    <div class="spec-cell highlight">
+      <div class="spec-label">Race Number</div>
+      <div class="spec-value">356</div>
+      <div class="spec-note">Riviera Team Portland</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Manufacturer</div>
+      <div class="spec-value">Rad Mfg Co</div>
+      <div class="spec-note">2240 SE 31st St, Portland, OR · Ph 235-1669</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Model / Year</div>
+      <div class="spec-value">Viper · 1962</div>
+      <div class="spec-note">Formula Vee, SCCA class legal</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Frame</div>
+      <div class="spec-value">Space Type</div>
+      <div class="spec-note">Fully triangulated, 1" sq. 16-gauge mild steel. Rear section removable for engine/transaxle access</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Overall Length</div>
+      <div class="spec-value">127 in</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Height (w/o roll bar)</div>
+      <div class="spec-value">33 in</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Track</div>
+      <div class="spec-value">51.4 / 50.7 in</div>
+      <div class="spec-note">Front / Rear — stock Volkswagen</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Ground Clearance</div>
+      <div class="spec-value">4 / 4.5 in</div>
+      <div class="spec-note">Front / Rear</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Weight</div>
+      <div class="spec-value">830 lb</div>
+      <div class="spec-note">Without fuel</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Tires</div>
+      <div class="spec-value">4.50×15 / 5.60×15</div>
+      <div class="spec-note">Front / Rear</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Wheels</div>
+      <div class="spec-value">VW Stock</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Engine</div>
+      <div class="spec-value">VW Stock</div>
+      <div class="spec-note">Modified optional to SCCA FV specs</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Suspension — Front</div>
+      <div class="spec-value">VW Beam</div>
+      <div class="spec-note">Upper torsion bar replaced by ½" stabilizer. Koni shocks. Camber adjustable via aluminum spacers</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Suspension — Rear</div>
+      <div class="spec-value">Single Trailing Arm</div>
+      <div class="spec-note">Springs to Rad spec. Koni shocks, adjustable</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Brakes</div>
+      <div class="spec-value">VW Stock Drum</div>
+      <div class="spec-note">Dual master cylinders — front and rear separate</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Clutch</div>
+      <div class="spec-value">Manual Cable</div>
+      <div class="spec-note">Hydraulic optional</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Body</div>
+      <div class="spec-value">4-Piece Fiberglass</div>
+      <div class="spec-note">Nose and tail removable. Standard color: yellow, impregnated in fiberglass</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Belly Pan</div>
+      <div class="spec-value">Aluminum</div>
+      <div class="spec-note">Louvered, under engine, for cooling</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Windscreen</div>
+      <div class="spec-value">⅛" Plexiglass</div>
+      <div class="spec-note">Molded, in three pieces</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Seat</div>
+      <div class="spec-value">Semi-Reclining</div>
+      <div class="spec-note">Fiberglass. Snap-on upholstery optional</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <div class="section-header reveal">
+    <span class="section-tag">Contemporary &amp; In-Period</span>
+    <h2 class="section-title">Photo Archive</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="photo-grid reveal">
+    <div class="pg pg-a" onclick="openLightbox('photo_34_view.jpg')">
+      <img src="photo_34_view.jpg" alt="3/4 view on trailer">
+      <div class="pg-cap">3/4 View — On Trailer</div>
+    </div>
+    <div class="pg pg-b" onclick="openLightbox('photo_garage_front.jpg')">
+      <img src="photo_garage_front.jpg" alt="Front 3/4 — garage">
+      <div class="pg-cap">Garage — Front 3/4</div>
+    </div>
+    <div class="pg pg-c" onclick="openLightbox('photo_rear_engine.jpg')">
+      <img src="photo_rear_engine.jpg" alt="Rear — nose off">
+      <div class="pg-cap">Rear — Nose Off</div>
+    </div>
+    <div class="pg pg-d" onclick="openLightbox('photo_cockpit_overhead.jpg')">
+      <img src="photo_cockpit_overhead.jpg" alt="Overhead — cockpit and engine">
+      <div class="pg-cap">Cockpit Overhead</div>
+    </div>
+    <div class="pg pg-e" onclick="openLightbox('photo_engine_rear_detail.jpg')">
+      <img src="photo_engine_rear_detail.jpg" alt="Engine rear">
+      <div class="pg-cap">Engine — Rear View</div>
+    </div>
+    <div class="pg pg-f" onclick="openLightbox('photo_at_halsey.jpg')">
+      <img src="photo_at_halsey.jpg" alt="At Halsey Import Parts, Portland">
+      <div class="pg-cap">Halsey Import Parts · Portland</div>
+    </div>
+    <div class="pg pg-g" onclick="openLightbox('photo_with_owner.jpg')">
+      <img src="photo_with_owner.jpg" alt="With owner">
+      <div class="pg-cap">Portland, 2024</div>
+    </div>
+    <div class="pg pg-h" onclick="openLightbox('photo_hero_side.jpg')">
+      <img src="photo_hero_side.jpg" alt="Side profile — golden hour, Portland hills">
+      <div class="pg-cap">Side Profile · Portland Hills · Golden Hour</div>
+    </div>
+  </div>
+  <!-- Period factory photos -->
+  <div class="period-header reveal">
+    <span class="section-tag">c. 1962 · Factory Originals</span>
+    <div class="section-rule"></div>
+  </div>
+  <div class="period-grid reveal">
+    <div class="period-slot" onclick="openLightbox('period_factory_photos.jpg')">
+      <img src="period_factory_photos.jpg" alt="Factory period photos — Viper in white, c.1962">
+      <div class="period-caption">
+        <div class="period-caption-title">Factory Photos · c. 1962</div>
+        <div class="period-caption-sub">Original Viper in white — Rad Mfg Co, Portland · Pre-delivery / press shots</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:3px" class="photo-grid">
+    <div class="pg pg-f" onclick="openLightbox('photo_garage_mug.jpg')">
+      <img src="photo_garage_mug.jpg" alt="Garage — engine exposed with Gulf mug">
+      <div class="pg-cap">Garage Life</div>
+    </div>
+    <div class="pg pg-f" onclick="openLightbox('photo_engine_rear2.jpg')">
+      <img src="photo_engine_rear2.jpg" alt="Engine rear 2">
+      <div class="pg-cap">Engine — Full Rear</div>
+    </div>
+    <div class="pg pg-c" onclick="openLightbox('photo_trailer_street.jpg')">
+      <img src="photo_trailer_street.jpg" alt="On trailer, street">
+      <div class="pg-cap">Rolling to the Track</div>
+    </div>
+    <div class="pg pg-c" onclick="openLightbox('photo_engine_rear_detail.jpg')">
+      <img src="photo_engine_rear2.jpg" alt="Engine exposed">
+      <div class="pg-cap">VW Engine Exposed</div>
+    </div>
+    <div class="pg pg-d" onclick="openLightbox('photo_engine_rear2.jpg')">
+      <img src="photo_engine_rear2.jpg" alt="">
+      <div class="pg-cap">Transaxle Detail</div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+  <div class="section-header reveal">
+    <span class="section-tag">Race Record &amp; Ownership</span>
+    <h2 class="section-title">History</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="timeline reveal">
+    <div class="tl-entry">
+      <div class="tl-year">1962</div>
+      <div class="tl-line"></div>
+      <div class="tl-body">
+        <div class="tl-head">Built by Rad Mfg Co · 2240 SE 31st St, Portland</div>
+        <div class="tl-text">
+          The Viper is fabricated at Rad Mfg Co's shop at 2240 SE 31st Street, Portland, Oregon (phone 235-1669). Constructed to full SCCA Formula Vee specification using VW Beetle running gear on a fully triangulated 1" square 16-gauge mild steel space frame. Body in four-piece fiberglass, impregnated in the standard Viper yellow. The brochure tagline: <em>"The inexpensive way to go racing. Viper — the way to win."</em>
+        </div>
+      </div>
+    </div>
+    <div class="tl-entry">
+      <div class="tl-year">1962–</div>
+      <div class="tl-line"></div>
+      <div class="tl-body">
+        <div class="tl-head">SCCA Competition — Riviera Team Portland · Race No. 356</div>
+        <div class="tl-text">
+          The Viper competes in SCCA Formula Vee as #356, entered under the Riviera Team Portland. Period photography shows the car at Oregon International Raceway, in the paddock alongside GT cars of the era. The brochure notes the Viper was proven at OIR: <em>"extremely faster through the corners."</em>
+        </div>
+      </div>
+    </div>
+    <div class="tl-entry">
+      <div class="tl-year">——</div>
+      <div class="tl-line"></div>
+      <div class="tl-body">
+        <div class="tl-head">Subsequent Ownership &amp; Storage</div>
+        <div class="tl-text">
+          [Document known ownership chain, periods of storage or inactivity, and any significant events between original race life and current ownership. This section will grow as research continues.]
+        </div>
+      </div>
+    </div>
+    <div class="tl-entry">
+      <div class="tl-year">Now</div>
+      <div class="tl-line"></div>
+      <div class="tl-body">
+        <div class="tl-head">Restored &amp; Running · Portland, Oregon</div>
+        <div class="tl-text">
+          The Viper has been restored to running condition and is currently based in Portland. The original Rad Mfg Co sales brochures survive with the car — a rare piece of Pacific Northwest motorsport ephemera. This site serves as the primary archive of its specifications, photographic record, and race history.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BROCHURE ARCHIVE -->
+<section id="brochure" class="brochure-section">
+  <div class="section-header reveal">
+    <span class="section-tag">Original Ephemera</span>
+    <h2 class="section-title">Rad Mfg Co Brochure</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="brochure-grid reveal">
+    <img src="photo_brochure_front.webp" alt="Brochure front" onclick="openLightbox('photo_brochure_front.webp')">
+    <img src="photo_brochure2_front.webp" alt="Brochure variant" onclick="openLightbox('photo_brochure2_front.webp')">
+    <img src="photo_brochure2_inside.webp" alt="Brochure inside spread" onclick="openLightbox('photo_brochure2_inside.webp')">
+    <img src="photo_brochure_back.webp" alt="Brochure back" onclick="openLightbox('photo_brochure_back.webp')">
+    <img src="photo_brochure3.webp" alt="Brochure 3" onclick="openLightbox('photo_brochure3.webp')">
+    <img src="photo_brochure4.webp" alt="Brochure 4" onclick="openLightbox('photo_brochure4.webp')">
+    <img src="photo_brochure5.webp" alt="Brochure 5" onclick="openLightbox('photo_brochure5.webp')">
+    <img src="photo_vintage_race.webp" alt="Vintage pit shot — OIR" onclick="openLightbox('photo_vintage_race.webp')">
+  </div>
+  <div class="brochure-note reveal">
+    The original Rad Mfg Co sales brochures survive with this car. Printed on cream stock in two colors, they include a full specification sheet, profile and 3/4 drawings of the Viper, and a period photo of car #356 in the pits at Oregon International Raceway. The cover copy read: <em>"If you don't drive a Viper, this is the only view you will see."</em> — Click any image to enlarge.
+  </div>
+</section>
+
+<!-- PRESS COVERAGE -->
+<section id="press">
+  <div class="section-header reveal">
+    <span class="section-tag">Sports Car Graphic · October 1964</span>
+    <h2 class="section-title">Press Coverage</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="press-intro reveal">
+    <div class="press-kicker">
+      <div class="press-pub">Sports Car Graphic</div>
+      <div class="press-date">October 1964</div>
+    </div>
+    <div class="press-headline">"Formula Vee — Based on Volkswagen components, it's an inexpensive way to go racing!"</div>
+    <div class="press-byline">By Wally Korb · Photos: John Christy, Wally Korb, Peter Soumac</div>
+  </div>
+
+  <div class="press-spread reveal">
+    <div class="press-img press-img-cover" onclick="openLightbox('press_scg_cover.jpg')">
+      <img src="press_scg_cover.jpg" alt="Sports Car Graphic — October 1964 cover">
+      <div class="pg-cap">Cover · October 1964</div>
+    </div>
+    <div class="press-img press-img-wide" onclick="openLightbox('press_scg_p3435.jpg')">
+      <img src="press_scg_p3435.jpg" alt="Feature spread pp.34–35 — Viper chassis, body, cockpit">
+      <div class="pg-cap">pp. 34–35 · Viper Feature — Chassis, Body &amp; Cockpit</div>
+    </div>
+    <div class="press-img press-img-wide" onclick="openLightbox('press_scg_p5253.jpg')">
+      <img src="press_scg_p5253.jpg" alt="Article spread pp.52–53 — Formula Vee article text">
+      <div class="pg-cap">pp. 52–53 · Full Article Text &amp; Race Photos</div>
+    </div>
+  </div>
+
+  <div class="press-context reveal">
+    <div class="press-pull">
+      "Formula Vee — the inexpensive way to go racing. Viper — the way to win."
+    </div>
+    <div class="prose">
+      <p>
+        The October 1964 issue of <strong>Sports Car Graphic</strong> ran a multi-page feature on Formula Vee by Wally Korb that prominently featured the Viper. The article placed FV within American club racing — arguing that the class's reliance on stock VW components made it uniquely accessible, while exploring how competitive the formula could become.
+      </p>
+      <p>
+        The feature included period photographs of the Viper's bare tubular chassis, its white fiberglass body panels, and the cockpit layout — making it one of the few contemporary publications to document the car's engineering in detail. Photos credited to John Christy, Wally Korb, and Peter Soumac.
+      </p>
+      <p>
+        That this issue survives with the car is a meaningful piece of provenance: a national press record from the year after the Viper's debut, confirming its visibility in the sports car world during its active racing life. Click any page to enlarge.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROVENANCE -->
+<section id="provenance">
+  <div class="section-header reveal">
+    <span class="section-tag">Context &amp; Background</span>
+    <h2 class="section-title">About the Car</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="prov-grid reveal">
+    <div class="prose">
+      <p>
+        Formula Vee was established as an SCCA class in 1958, built on the premise that real open-wheel road racing could be made affordable by mandating stock Volkswagen Beetle components — engine, suspension, brakes, and transaxle — in a purpose-built single-seat chassis.
+      </p>
+      <p>
+        By 1962 the class had taken hold nationally, with constructors appearing not just in Florida and California but across the country. <strong>Rad Mfg Co</strong>, operating out of 2240 SE 31st Street in Portland, Oregon, was among the Pacific Northwest builders producing FV cars for regional SCCA competition.
+      </p>
+      <p>
+        The Viper's design was practical and effective: a fully triangulated mild steel space frame, four-piece fiberglass body in factory yellow, and a rear section that could be dropped with the engine and transaxle as a unit for easy paddock servicing. The brochure advertised Koni shocks both front and rear, and springs wound to Rad's own specification — claimed to make the car <em>"extremely faster through the corners"</em> than other FV competitors.
+      </p>
+      <p>
+        Race #356, entered by the Riviera Team Portland, is one of the documented Vipers to have competed at Oregon International Raceway. The survival of both the car and its original factory brochures makes this a rare and complete piece of Pacific Northwest motorsport history.
+      </p>
+    </div>
+    <div>
+      <div class="data-block">
+        <div class="data-block-title">Identity Record</div>
+        <div class="data-row"><span class="data-key">Make</span><span class="data-val">Rad Mfg Co</span></div>
+        <div class="data-row"><span class="data-key">Model</span><span class="data-val">Viper</span></div>
+        <div class="data-row"><span class="data-key">Year</span><span class="data-val">1962</span></div>
+        <div class="data-row"><span class="data-key">Builder Address</span><span class="data-val">2240 SE 31st St, Portland OR</span></div>
+        <div class="data-row"><span class="data-key">Race Number</span><span class="data-val">#356</span></div>
+        <div class="data-row"><span class="data-key">Team</span><span class="data-val">Riviera Team Portland</span></div>
+        <div class="data-row"><span class="data-key">Class</span><span class="data-val">SCCA Formula Vee</span></div>
+        <div class="data-row"><span class="data-key">Circuit</span><span class="data-val">Oregon International Raceway</span></div>
+        <div class="data-row"><span class="data-key">Frame</span><span class="data-val">Triangulated steel space frame</span></div>
+        <div class="data-row"><span class="data-key">Body Color</span><span class="data-val">Yellow (impreg. fiberglass)</span></div>
+        <div class="data-row"><span class="data-key">Drive</span><span class="data-val">Rear engine / RWD</span></div>
+        <div class="data-row"><span class="data-key">Status</span><span class="data-val">Restored &amp; Running</span></div>
+        <div class="data-row"><span class="data-key">Current Location</span><span class="data-val">Portland, Oregon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-mark">Viper <span>#356</span> · 1962</div>
+  <div class="footer-meta">
+    Rad Mfg Co · 2240 SE 31st Street · Portland, Oregon<br>
+    Formula Vee Documentation Archive · Built in Portland
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <div id="lightbox-close" onclick="closeLightbox()">✕</div>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, {threshold:.07});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Lightbox
+  function openLightbox(src){
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+</script>
+</body>
+</html>
